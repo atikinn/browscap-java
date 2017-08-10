@@ -47,6 +47,15 @@ class UserAgentParserImpl implements UserAgentParser {
     }
 
     /**
+     *
+     *  {@inheritDoc}
+     */
+    @Override
+    public Rule[] getRules() {
+        return myRules;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

@@ -1,5 +1,7 @@
 package com.blueconic.browscap;
 
+import com.blueconic.browscap.impl.Rule;
+
 public interface UserAgentParser {
 
     /**
@@ -8,4 +10,9 @@ public interface UserAgentParser {
      * @return The capabilities of the best matching rule
      */
     Capabilities parse(String userAgent);
+
+    /**
+     * @return Array of alphabetically sorted Rules
+     */
+    Rule[] getRules();
 }

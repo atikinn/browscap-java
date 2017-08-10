@@ -6,7 +6,7 @@ import com.blueconic.browscap.Capabilities;
  * Instances of this class represent a line of the browscap data. This class is responsible for checking a potential
  * match and for supplying the corresponding browser properties.
  */
-class Rule {
+public class Rule {
 
     // The properties of the matching pattern
     private final Literal myPrefix;
