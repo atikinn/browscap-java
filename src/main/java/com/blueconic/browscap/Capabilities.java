@@ -4,6 +4,12 @@ public interface Capabilities {
     String UNKNOWN_BROWSCAP_VALUE = "Unknown";
 
     /**
+     * Returns the pattern's regex value (e.g. Chrome)
+     * @return the pattern's regex
+     */
+    String getPattern();
+
+    /**
      * Returns the browser value (e.g. Chrome)
      * @return the browser
      */
@@ -39,4 +45,9 @@ public interface Capabilities {
      */
     String getDeviceType();
 
+    /**
+     * Returns the property's comment
+     * @return the property's comment
+     */
+    String getComment();
 }

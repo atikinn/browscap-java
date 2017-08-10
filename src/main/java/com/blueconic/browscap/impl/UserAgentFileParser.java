@@ -15,6 +15,7 @@ import com.blueconic.browscap.Capabilities;
 import com.blueconic.browscap.ParseException;
 import com.blueconic.browscap.UserAgentParser;
 import com.opencsv.CSVReader;
+import org.apache.commons.lang3.CharUtils;
 
 /**
  * This class is responsible for parsing rules and creating the efficient java representation.
@@ -61,15 +62,23 @@ public class UserAgentFileParser {
         final String pattern = record[0].toLowerCase().replaceAll("\\*+", "*");
         try {
 
+            final String comment = getValue(record[4]);
             final String browser = getValue(record[5]);
             final String browserType = getValue(record[6]);
             final String browserMajorVersion = getValue(record[11]);
             final String deviceType = getValue(record[43]);
             final String platform = getValue(record[13]);
             final String platformVersion = getValue(record[14]);
+            final String regex = toRegex(record[0]);
             final Capabilities capabilities =
-                    new CapabilitiesImpl(browser, browserType, browserMajorVersion, deviceType, platform,
-                            platformVersion);
+                    new CapabilitiesImpl(regex,
+                                         browser,
+                                         browserType,
+                                         browserMajorVersion,
+                                         deviceType,
+                                         platform,
+                                         platformVersion,
+                                         comment);
 
             final Rule rule = createRule(pattern, capabilities);
 
@@ -156,5 +165,30 @@ public class UserAgentFileParser {
         }
 
         return parts;
+    }
+
+    private static String toRegex(String namePattern) {
+        final StringBuilder patternBuilder = new StringBuilder();
+        patternBuilder.append("^");
+        for (final char c : namePattern.toCharArray()) {
+            switch (c) {
+                case '*':
+                    patternBuilder.append(".*?");
+                    break;
+                case '?':
+                    patternBuilder.append(".");
+                    break;
+                default:
+                    if (CharUtils.isAsciiAlphanumeric(c) || c==' ') {
+                        // The char c is either an alphabet, or a number or a
+                        // whitespace, and NOT a regex wildcard.
+                        patternBuilder.append(c);
+                    } else {
+                        patternBuilder.append("\\").append(c);
+                    }
+            }
+        }
+        patternBuilder.append("$");
+        return patternBuilder.toString().toLowerCase();
     }
 }
