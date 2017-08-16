@@ -85,7 +85,7 @@ public class Rule {
         return literal != null && literal.toString().contains(value);
     }
 
-    Capabilities getCapabilities() {
+    public Capabilities getCapabilities() {
         return myCapabilities;
     }
 
