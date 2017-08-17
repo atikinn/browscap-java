@@ -59,6 +59,11 @@ public class UserAgentFileParser {
 
         // Normalize: lowercase and remove duplicate wildcards
         final String pattern = record[0].toLowerCase().replaceAll("\\*+", "*");
+        // Skip header and default values rows
+        if (pattern.equals("PropertyName") || pattern.equals("DefaultProperties")) {
+            return null;
+        }
+
         try {
 
             final String regex = toRegex(record[0]);
@@ -66,9 +71,10 @@ public class UserAgentFileParser {
             final String browser = getValue(record[5]);
             final String browserType = getValue(record[6]);
             final String browserMajorVersion = getValue(record[11]);
-            final String deviceType = getValue(record[43]);
             final String platform = getValue(record[13]);
             final String platformVersion = getValue(record[14]);
+            final String deviceName = getValue(record[41]);
+            final String deviceType = getValue(record[43]);
             final Capabilities capabilities =
                     new CapabilitiesImpl(regex,
                                          browser,
@@ -77,7 +83,8 @@ public class UserAgentFileParser {
                                          deviceType,
                                          platform,
                                          platformVersion,
-                                         comment);
+                                         comment,
+                                         deviceName);
 
             final Rule rule = createRule(pattern, capabilities);
 

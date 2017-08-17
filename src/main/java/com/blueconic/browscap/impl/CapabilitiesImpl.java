@@ -12,6 +12,7 @@ class CapabilitiesImpl implements Capabilities {
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE);
 
     private final String myBrowser;
@@ -22,6 +23,7 @@ class CapabilitiesImpl implements Capabilities {
     private final String myPlatformVersion;
     private final String myPattern;
     private final String myComment;
+    private final String myDeviceName;
 
     public CapabilitiesImpl(final String pattern,
                             final String browser,
@@ -30,7 +32,8 @@ class CapabilitiesImpl implements Capabilities {
                             final String deviceType,
                             final String platform,
                             final String platformVersion,
-                            final String comment) {
+                            final String comment,
+                            final String deviceName) {
 
         myPattern = pattern;
         myBrowser = browser;
@@ -40,6 +43,7 @@ class CapabilitiesImpl implements Capabilities {
         myPlatform = platform;
         myPlatformVersion = platformVersion;
         myComment = comment;
+        myDeviceName = deviceName;
     }
 
     /**
@@ -104,10 +108,23 @@ class CapabilitiesImpl implements Capabilities {
     @Override
     public String getComment() { return myComment; }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDeviceName() { return myDeviceName; }
+
     @Override
     public String toString() {
-        return "Capabilities{browser='" + myBrowser + "', browserType='" + myBrowserType + "', browserMajorVersion='"
-                + myBrowserMajorVersion + "', deviceType='" + myDeviceType + "', platform='" + myPlatform
-                + "', platformVersion='" + myPlatformVersion + '}';
+        return "Capabilities{browser='" + myBrowser
+                + "', browserType='" + myBrowserType
+                + "', browserMajorVersion='" + myBrowserMajorVersion
+                + "', deviceType='" + myDeviceType
+                + "', platform='" + myPlatform
+                + "', platformVersion='" + myPlatformVersion
+                + "', deviceName='" + myDeviceName
+                + "', comment='" + myComment
+                + "', pattern='" + myPattern
+                +'}';
     }
 }

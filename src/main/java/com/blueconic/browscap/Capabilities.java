@@ -50,4 +50,10 @@ public interface Capabilities {
      * @return the property's comment
      */
     String getComment();
+
+    /**
+     * Returns the property's device name
+     * @return the property's device name
+     */
+    String getDeviceName();
 }
