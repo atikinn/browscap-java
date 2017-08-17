@@ -56,4 +56,10 @@ public interface Capabilities {
      * @return the property's device name
      */
     String getDeviceName();
+
+    /**
+     * Returns the property's device name
+     * @return the property's device name
+     */
+    String getDeviceCodeName();
 }

@@ -6,8 +6,9 @@ class CapabilitiesImpl implements Capabilities {
     public final static Capabilities DEFAULT =
             new CapabilitiesImpl(
                     UNKNOWN_BROWSCAP_VALUE,
-                    "Default Browser",
-                    "Default Browser",
+                    UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
@@ -24,6 +25,7 @@ class CapabilitiesImpl implements Capabilities {
     private final String myPattern;
     private final String myComment;
     private final String myDeviceName;
+    private final String myDeviceCodeName;
 
     public CapabilitiesImpl(final String pattern,
                             final String browser,
@@ -33,7 +35,8 @@ class CapabilitiesImpl implements Capabilities {
                             final String platform,
                             final String platformVersion,
                             final String comment,
-                            final String deviceName) {
+                            final String deviceName,
+                            final String deviceCodeName) {
 
         myPattern = pattern;
         myBrowser = browser;
@@ -44,6 +47,7 @@ class CapabilitiesImpl implements Capabilities {
         myPlatformVersion = platformVersion;
         myComment = comment;
         myDeviceName = deviceName;
+        myDeviceCodeName = deviceCodeName;
     }
 
     /**
@@ -114,6 +118,12 @@ class CapabilitiesImpl implements Capabilities {
     @Override
     public String getDeviceName() { return myDeviceName; }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDeviceCodeName() { return myDeviceCodeName; }
+
     @Override
     public String toString() {
         return "Capabilities{browser='" + myBrowser
@@ -123,6 +133,7 @@ class CapabilitiesImpl implements Capabilities {
                 + "', platform='" + myPlatform
                 + "', platformVersion='" + myPlatformVersion
                 + "', deviceName='" + myDeviceName
+                + "', deviceCodeName='" + myDeviceCodeName
                 + "', comment='" + myComment
                 + "', pattern='" + myPattern
                 +'}';
