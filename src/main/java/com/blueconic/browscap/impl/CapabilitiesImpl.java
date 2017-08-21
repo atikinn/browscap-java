@@ -14,6 +14,9 @@ class CapabilitiesImpl implements Capabilities {
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
+                    UNKNOWN_BROWSCAP_VALUE,
                     UNKNOWN_BROWSCAP_VALUE);
 
     private final String myBrowser;
@@ -26,6 +29,9 @@ class CapabilitiesImpl implements Capabilities {
     private final String myComment;
     private final String myDeviceName;
     private final String myDeviceCodeName;
+    private final String myPlatformMaker;
+    private final String myDeviceMaker;
+    private final String myDeviceBrandName;
 
     public CapabilitiesImpl(final String pattern,
                             final String browser,
@@ -36,8 +42,10 @@ class CapabilitiesImpl implements Capabilities {
                             final String platformVersion,
                             final String comment,
                             final String deviceName,
-                            final String deviceCodeName) {
-
+                            final String deviceCodeName,
+                            final String platformMaker,
+                            final String deviceMaker,
+                            final String deviceBrandName) {
         myPattern = pattern;
         myBrowser = browser;
         myBrowserType = browserType;
@@ -48,6 +56,9 @@ class CapabilitiesImpl implements Capabilities {
         myComment = comment;
         myDeviceName = deviceName;
         myDeviceCodeName = deviceCodeName;
+        myPlatformMaker = platformMaker;
+        myDeviceMaker = deviceMaker;
+        myDeviceBrandName = deviceBrandName;
     }
 
     /**
@@ -123,6 +134,24 @@ class CapabilitiesImpl implements Capabilities {
      */
     @Override
     public String getDeviceCodeName() { return myDeviceCodeName; }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getPlatformMaker() { return myPlatformMaker; }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDeviceMaker() { return myDeviceMaker; }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDeviceBrandName() { return myDeviceBrandName; }
 
     @Override
     public String toString() {

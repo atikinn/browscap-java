@@ -73,9 +73,12 @@ public class UserAgentFileParser {
             final String browserMajorVersion = getValue(record[11]);
             final String platform = getValue(record[13]);
             final String platformVersion = getValue(record[14]);
+            final String platformMaker = getValue(record[17]);
             final String deviceName = getValue(record[41]);
+            final String deviceMaker = getValue(record[42]);
             final String deviceType = getValue(record[43]);
             final String deviceCodeName = getValue(record[45]);
+            final String deviceBrandName = getValue(record[46]);
             final Capabilities capabilities =
                     new CapabilitiesImpl(regex,
                                          browser,
@@ -86,7 +89,10 @@ public class UserAgentFileParser {
                                          platformVersion,
                                          comment,
                                          deviceName,
-                                         deviceCodeName);
+                                         deviceCodeName,
+                                         platformMaker,
+                                         deviceMaker,
+                                         deviceBrandName);
 
             final Rule rule = createRule(pattern, capabilities);
 

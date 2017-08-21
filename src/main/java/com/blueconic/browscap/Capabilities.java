@@ -62,4 +62,22 @@ public interface Capabilities {
      * @return the property's device name
      */
     String getDeviceCodeName();
+
+    /**
+     * Returns the platform's maker
+     * @return the platform's maker
+     */
+    String getPlatformMaker();
+
+    /**
+     * Returns the device maker
+     * @return the device maker
+     */
+    String getDeviceMaker();
+
+    /**
+     * Returns the device brand name
+     * @return the device brand name
+     */
+    String getDeviceBrandName();
 }
